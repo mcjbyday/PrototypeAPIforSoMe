@@ -29,6 +29,14 @@ const thoughtSchema = new Schema(
   }
 );
 
+// Create a virtual property `friendCount` that gets the amount of associated users per user
+thoughtSchema
+  .virtual('reactionCount')
+  // Getter
+  .get(function () {
+    return this.reactions.length;
+  });
+
 const Thought = model('thought', thoughtSchema);
 
 module.exports = Thought;

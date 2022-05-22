@@ -37,6 +37,16 @@ const userSchema = new Schema(
   }
 );
 
+
+// Create a virtual property `friendCount` that gets the amount of associated users per user
+userSchema
+  .virtual('friendCount')
+  // Getter
+  .get(function () {
+    return this.friends.length;
+  });
+
+
 const User = model('user', userSchema);
 
 module.exports = User;
