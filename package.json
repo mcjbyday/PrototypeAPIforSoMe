@@ -1,12 +1,13 @@
 {
-  "name": "Based SoMe prototype database",
+  "name": "01-Based_Prototype-ForYou",
   "version": "1.0.1",
-  "description": "Mongoose back-end project - Main",
+  "description": "Mongoose back-end proto",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "node index",
     "dev": "nodemon index",
+    "seed": "node utils/seed",
     "heroku-postbuild": "node utils/seed.js"
   },
   "dependencies": {
