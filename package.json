@@ -1,20 +1,23 @@
 {
-  "name": "PrototypeAPIForSoMe",
-  "version": "1.0.1",
-  "description": "Mongoose back-end proto",
+  "name": "prototypeapiforsome",
+  "version": "1.0.0",
+  "description": "A prototype API for Social Media",
   "main": "index.js",
-  "license": "MIT",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
-    "seed": "node utils/seed",
-    "heroku-postbuild": "node utils/seed.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcjbyday/PrototypeAPIforSoMe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcjbyday/PrototypeAPIforSoMe/issues"
+  },
+  "homepage": "https://github.com/mcjbyday/PrototypeAPIforSoMe#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.0.13"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.9"
+    "express": "^4.18.1",
+    "mongoose": "^6.3.4"
   }
 }
