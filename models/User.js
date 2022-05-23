@@ -1,6 +1,8 @@
 const { Schema, model } = require('mongoose');
 const thoughtSchema = require('./Thought');
 
+// friends are simply other users associated with a particular user's instance
+
 // Schema to create User model
 const userSchema = new Schema(
   {
@@ -33,7 +35,9 @@ const userSchema = new Schema(
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
+    id: false,
   }
 );
 

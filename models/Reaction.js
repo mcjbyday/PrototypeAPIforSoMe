@@ -1,5 +1,5 @@
 const { Schema, Types } = require('mongoose');
-
+// reaction schema constitutes a subdocument of thoughts
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -26,7 +26,7 @@ const reactionSchema = new Schema(
     toJSON: {
       getters: true,
     },
-    _id: false,
+    id: false,
   }
 );
 
