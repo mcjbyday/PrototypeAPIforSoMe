@@ -2,10 +2,10 @@ const { ObjectId } = require('mongoose').Types;
 const { User, Thought } = require('../models');
 
 // Aggregate function to get the number of users overall
-const headCount = async () =>
-  User.aggregate()
-    .count('userCount')
-    .then((numberOfUsers) => numberOfUsers);
+// const headCount = async () =>
+//   User.aggregate()
+//     .count('userCount')
+//     .then((numberOfUsers) => numberOfUsers);
 
 module.exports = {
   // Get all users
@@ -72,13 +72,13 @@ module.exports = {
       });
   },
 
-  // Add an reaction to a user
-  addReaction(req, res) {
-    console.log('You are adding an reaction');
+  // Add an friend to a user
+  addFriend(req, res) {
+    console.log('You are adding an friend');
     console.log(req.body);
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { reactions: req.body } },
+      { $addToSet: { friends: req.body } },
       { runValidators: true, new: true }
     )
       .then((user) =>
@@ -90,11 +90,11 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Remove reaction from a user
-  removeReaction(req, res) {
+  // Remove friend from a user
+  removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { reaction: { reactionId: req.params.reactionId } } },
+      { $pull: { friends: { friendId: req.params.friendId } } },
       { runValidators: true, new: true }
     )
       .then((user) =>
