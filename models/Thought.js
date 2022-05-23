@@ -13,6 +13,7 @@ const thoughtSchema = new Schema(
       type: Date,
       default: Date.now,
     },
+    // TODO switch this to username
     users: [
       {
         type: Schema.Types.ObjectId,
@@ -30,7 +31,7 @@ const thoughtSchema = new Schema(
   }
 );
 
-// Create a virtual property `friendCount` that gets the amount of associated users per user
+// Create a virtual property `reactionCount` that gets the amount of associated users per user
 thoughtSchema
   .virtual('reactionCount')
   // Getter

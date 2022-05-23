@@ -11,6 +11,8 @@ const reactionSchema = new Schema(
       required: true,
       maxlength: 25,
     },
+    // TODO potentially need to switch this to username.. TBD
+
     users: [
       {
         type: Schema.Types.ObjectId,
