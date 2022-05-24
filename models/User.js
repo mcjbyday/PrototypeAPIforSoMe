@@ -37,7 +37,7 @@ const userSchema = new Schema(
       getters: true,
       virtuals: true,
     },
-    id: false,
+    // _id: false, // only provide this in the scenario where you want adifferent Id from the _id name
   }
 );
 

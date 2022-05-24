@@ -1,4 +1,8 @@
 const { Thought, User } = require('../models');
+// We import the ObjectId() function from MongoDB
+// const ObjectId = require('mongoodb').ObjectId;
+// const { ObjectId } = require('mongoose').Types;
+
 
 module.exports = {
   // Get all thoughts
@@ -21,7 +25,17 @@ module.exports = {
   // Create a thought
   createThought(req, res) {
     Thought.create(req.body)
-      .then((thought) => res.json(thought))
+      .then((thought) => {
+        console.log(thought);
+        User.findOneAndUpdate(
+          {_id: req.body.userId},
+          { $addToSet: { thoughts: thought._id } },
+          { runValidators: true, new: true }
+          )
+          .then(result => {
+            res.json(thought);
+          });
+        })
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
@@ -33,9 +47,9 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought found with that ID' })
-          : User.deleteMany({ _id: { $in: thought.u-sers } })
+          : User.deleteMany({ _id: { $in: thought.users } })
       )
-      .then(() => res.json({ message: 'Thought and u-sers deleted!' }))
+      .then(() => res.json({ message: 'Thought and users deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
   // Update an existing thought
