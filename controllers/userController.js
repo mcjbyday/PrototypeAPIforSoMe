@@ -11,7 +11,9 @@ module.exports = {
   getUsers(req, res) {
     User.find()
       .populate('thoughts')
-      .populate('friends')
+      .populate('friends')  
+      // .populate('thoughts','_id')
+      // .populate('friends','_id')
       .then(async (users) => res.json(users))
       // .then(async (users) => {
       //   const userObj = {
@@ -29,7 +31,9 @@ module.exports = {
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .populate('thoughts')
-      .populate('friends')
+      .populate('friends')  
+      // .populate('thoughts','_id')
+      // .populate('friends','_id')
       .select('-__v')
       .then(async (user) =>
         !user
@@ -90,7 +94,7 @@ module.exports = {
 
   // Add an friend to a user
   addFriend(req, res) {
-    console.log('You are adding an friend');
+    console.log('You are adding a friend');
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },
