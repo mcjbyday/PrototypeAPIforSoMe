@@ -10,8 +10,9 @@ module.exports = {
   // Get all users
   getUsers(req, res) {
     User.find()
-      .populate('thoughts')
-      .populate('friends')  
+      .select('-__v')
+      // .populate('thoughts')
+      // .populate('friends')  
       // .populate('thoughts','_id')
       // .populate('friends','_id')
       .then(async (users) => res.json(users))
@@ -30,8 +31,8 @@ module.exports = {
   // Get a single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
-      .populate('thoughts')
-      .populate('friends')  
+      // .populate('thoughts')
+      // .populate('friends')  
       // .populate('thoughts','_id')
       // .populate('friends','_id')
       .select('-__v')
