@@ -11,18 +11,10 @@ module.exports = {
   getUsers(req, res) {
     User.find()
       .select('-__v')
+      // snippets to hydrate object Ids
       // .populate('thoughts')
       // .populate('friends')  
-      // .populate('thoughts','_id')
-      // .populate('friends','_id')
       .then(async (users) => res.json(users))
-      // .then(async (users) => {
-      //   const userObj = {
-      //     users,
-      //     headCount: await headCount(),
-      //   };
-      //   return res.json(userObj);
-      // })
       .catch((err) => {
         console.log(err);
         return res.status(500).json(err);
@@ -31,10 +23,9 @@ module.exports = {
   // Get a single user
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
+      // snippets to hydrate object Ids
       // .populate('thoughts')
       // .populate('friends')  
-      // .populate('thoughts','_id')
-      // .populate('friends','_id')
       .select('-__v')
       .then(async (user) =>
         !user
@@ -95,7 +86,6 @@ module.exports = {
 
   // Add an friend to a user
   addFriend(req, res) {
-    console.log('You are adding a friend');
     User.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },

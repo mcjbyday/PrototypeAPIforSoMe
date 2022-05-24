@@ -1,8 +1,4 @@
 const { Thought, User } = require('../models');
-// We import the ObjectId() function from MongoDB
-// const ObjectId = require('mongoodb').ObjectId;
-// const { ObjectId } = require('mongoose').Types;
-
 
 module.exports = {
   // Get all thoughts
@@ -26,7 +22,6 @@ module.exports = {
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
-        console.log(thought);
         User.findOneAndUpdate(
           {_id: req.body.userId},
           { $addToSet: { thoughts: thought._id } },
@@ -69,7 +64,6 @@ module.exports = {
 
   // Add an reaction to a thought
   createReaction(req, res) {
-    console.log('You are adding an reaction');
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $addToSet: { reactions: req.body } },
